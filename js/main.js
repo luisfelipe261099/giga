@@ -245,102 +245,165 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ---------- Product Images Injection ----------
-    var IMG_BASE = 'https://images.unsplash.com/';
-    var IMG_PARAMS = '?auto=format&fit=crop&w=400&h=300&q=80';
-
-    var sectionImages = {
+    // Usando imagens externas confiáveis que correspondem a cada produto
+    var productImages = {
         'perfumes': [
-            'photo-1541643600914-78b084683601',
-            'photo-1592945403244-b3fbafd7f539',
-            'photo-1523293182086-7651a899d37f',
-            'photo-1585386959984-a4155224a1ad',
-            'photo-1594035910387-fea081ac29ee',
-            'photo-1608528577891-eb055944f2e7',
-            'photo-1556228578-0d85b1a4d571',
-            'photo-1611930022073-b7a4ba5fcccd',
-            'photo-1596462502278-27bfdc403348',
-            'photo-1585232004423-244e0e6904e3',
-            'photo-1535585209827-a15fcdbc4c2d',
-            'photo-1527799820374-dcf8d9d4a388',
-            'photo-1515488042361-ee00e0ddd4e4'
+            // 0: Perfumes Árabes Premium - frascos dourados de perfume
+            'https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Perfumes Importados - coleção de perfumes
+            'https://images.pexels.com/photos/264819/pexels-photo-264819.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Body Splash - spray corporal
+            'https://images.pexels.com/photos/3059609/pexels-photo-3059609.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Kits de Perfumes - kit presente
+            'https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Perfumes Roll-on (Óleo)
+            'https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Desodorantes Spray
+            'https://images.pexels.com/photos/8128069/pexels-photo-8128069.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 6: Hidratantes Corporais
+            'https://images.pexels.com/photos/3735657/pexels-photo-3735657.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 7: Cremes Corporais
+            'https://images.pexels.com/photos/3018845/pexels-photo-3018845.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 8: Máscaras Capilares
+            'https://images.pexels.com/photos/3993398/pexels-photo-3993398.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 9: Shampoos
+            'https://images.pexels.com/photos/3735218/pexels-photo-3735218.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 10: Condicionadores
+            'https://images.pexels.com/photos/3737586/pexels-photo-3737586.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 11: Óleos Capilares
+            'https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 12: Produtos Infantis (bebê)
+            'https://images.pexels.com/photos/3270224/pexels-photo-3270224.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'higiene': [
-            'photo-1607006344380-b6775a0824a7',
-            'photo-1515488042361-ee00e0ddd4e4',
-            'photo-1543076499-a6133cb932fd',
-            'photo-1559591937-fffb0f6e8602',
-            'photo-1621955964441-c173e01c135b',
-            'photo-1608528577891-eb055944f2e7',
-            'photo-1581497396202-5645e76a3a8e'
+            // 0: Sabonetes Líquidos
+            'https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Sabonetes Infantis
+            'https://images.pexels.com/photos/7262898/pexels-photo-7262898.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Shampoo Infantil
+            'https://images.pexels.com/photos/6634576/pexels-photo-6634576.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Creme Dental Colgate
+            'https://images.pexels.com/photos/3762879/pexels-photo-3762879.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Enxaguante Bucal
+            'https://images.pexels.com/photos/7583935/pexels-photo-7583935.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Desodorantes
+            'https://images.pexels.com/photos/8128069/pexels-photo-8128069.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 6: Produtos Masculinos
+            'https://images.pexels.com/photos/3785147/pexels-photo-3785147.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'limpeza': [
-            'photo-1585421514284-efb74c2b69ba',
-            'photo-1563453392212-326f5e854473',
-            'photo-1622560480605-d83c853bc5c3',
-            'photo-1585421514284-efb74c2b69ba',
-            'photo-1563453392212-326f5e854473',
-            'photo-1622560480605-d83c853bc5c3',
-            'photo-1585421514284-efb74c2b69ba',
-            'photo-1563453392212-326f5e854473',
-            'photo-1622560480605-d83c853bc5c3',
-            'photo-1585421514284-efb74c2b69ba',
-            'photo-1563453392212-326f5e854473',
-            'photo-1622560480605-d83c853bc5c3',
-            'photo-1585421514284-efb74c2b69ba'
+            // 0: Detergente Líquido
+            'https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Amaciante de Roupas
+            'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Sabão Líquido
+            'https://images.pexels.com/photos/4108726/pexels-photo-4108726.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Sabão em Pó
+            'https://images.pexels.com/photos/5217914/pexels-photo-5217914.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Água Sanitária
+            'https://images.pexels.com/photos/4239013/pexels-photo-4239013.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Desinfetante
+            'https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 6: Limpador Multiuso
+            'https://images.pexels.com/photos/4108714/pexels-photo-4108714.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 7: Limpa Piso
+            'https://images.pexels.com/photos/4239035/pexels-photo-4239035.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 8: Limpa Vidro
+            'https://images.pexels.com/photos/6195125/pexels-photo-6195125.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 9: Limpa Grelha
+            'https://images.pexels.com/photos/6195956/pexels-photo-6195956.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 10: Álcool
+            'https://images.pexels.com/photos/3987153/pexels-photo-3987153.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 11: Cera Líquida
+            'https://images.pexels.com/photos/4108725/pexels-photo-4108725.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 12: Removedores
+            'https://images.pexels.com/photos/4239036/pexels-photo-4239036.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'profissional': [
-            'photo-1622560480605-d83c853bc5c3',
-            'photo-1563453392212-326f5e854473',
-            'photo-1585421514284-efb74c2b69ba',
-            'photo-1622560480605-d83c853bc5c3',
-            'photo-1563453392212-326f5e854473',
-            'photo-1585421514284-efb74c2b69ba',
-            'photo-1622560480605-d83c853bc5c3'
+            // 0: Lava Roupas (Galão)
+            'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Amaciante Concentrado
+            'https://images.pexels.com/photos/5217914/pexels-photo-5217914.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Detergente Profissional
+            'https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Produtos Tróppel
+            'https://images.pexels.com/photos/4239013/pexels-photo-4239013.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Produtos Sunny
+            'https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Limpeza Pesada
+            'https://images.pexels.com/photos/4108726/pexels-photo-4108726.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 6: Galões de Químicos
+            'https://images.pexels.com/photos/4239035/pexels-photo-4239035.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'descartaveis': [
-            'photo-1583947215259-38e31be8751f',
-            'photo-1583947215259-38e31be8751f',
-            'photo-1583947215259-38e31be8751f',
-            'photo-1583947215259-38e31be8751f',
-            'photo-1583947215259-38e31be8751f',
-            'photo-1583947215259-38e31be8751f'
+            // 0: Papel Higiênico
+            'https://images.pexels.com/photos/3958199/pexels-photo-3958199.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Papel Toalha
+            'https://images.pexels.com/photos/4210337/pexels-photo-4210337.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Guardanapos
+            'https://images.pexels.com/photos/4210341/pexels-photo-4210341.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Embalagens e Sacos Plásticos
+            'https://images.pexels.com/photos/6962024/pexels-photo-6962024.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Panos de Limpeza
+            'https://images.pexels.com/photos/6195120/pexels-photo-6195120.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Flanelas
+            'https://images.pexels.com/photos/6195126/pexels-photo-6195126.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'calcados': [
-            'photo-1603487742131-4160ec999306',
-            'photo-1603487742131-4160ec999306',
-            'photo-1603487742131-4160ec999306',
-            'photo-1603487742131-4160ec999306'
+            // 0: Chinelos Masculinos
+            'https://images.pexels.com/photos/1032110/pexels-photo-1032110.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Chinelos Femininos
+            'https://images.pexels.com/photos/1756086/pexels-photo-1756086.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Chinelos Infantis
+            'https://images.pexels.com/photos/2987584/pexels-photo-2987584.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Havaianas e Similares
+            'https://images.pexels.com/photos/1032113/pexels-photo-1032113.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'automotivo': [
-            'photo-1487754180451-c456f719a1fc',
-            'photo-1487754180451-c456f719a1fc',
-            'photo-1487754180451-c456f719a1fc',
-            'photo-1487754180451-c456f719a1fc',
-            'photo-1487754180451-c456f719a1fc',
-            'photo-1487754180451-c456f719a1fc'
+            // 0: Óleo de Motor
+            'https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Aditivos
+            'https://images.pexels.com/photos/4489731/pexels-photo-4489731.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Fluídos Automotivos
+            'https://images.pexels.com/photos/4489728/pexels-photo-4489728.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Spray Automotivo
+            'https://images.pexels.com/photos/3807133/pexels-photo-3807133.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Limpa Pneus
+            'https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Limpeza Automotiva
+            'https://images.pexels.com/photos/6873088/pexels-photo-6873088.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'ferramentas': [
-            'photo-1581092160562-40aa08e78837',
-            'photo-1504148455328-c376907d081c',
-            'photo-1581092160562-40aa08e78837',
-            'photo-1504148455328-c376907d081c',
-            'photo-1581092160562-40aa08e78837',
-            'photo-1504148455328-c376907d081c'
+            // 0: Jogo de Chave Allen
+            'https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Ferramentas Diversas
+            'https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Serra Policorte
+            'https://images.pexels.com/photos/8985454/pexels-photo-8985454.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 3: Lixas
+            'https://images.pexels.com/photos/8985474/pexels-photo-8985474.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 4: Parafusos
+            'https://images.pexels.com/photos/1573823/pexels-photo-1573823.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 5: Itens de Manutenção
+            'https://images.pexels.com/photos/4792510/pexels-photo-4792510.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ],
         'outros': [
-            'photo-1584949091598-c31daaaa4aa9',
-            'photo-1608528577891-eb055944f2e7',
-            'photo-1585421514284-efb74c2b69ba'
+            // 0: Inseticidas
+            'https://images.pexels.com/photos/5462263/pexels-photo-5462263.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 1: Aerosóis Diversos
+            'https://images.pexels.com/photos/4239036/pexels-photo-4239036.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
+            // 2: Produtos Químicos
+            'https://images.pexels.com/photos/4239013/pexels-photo-4239013.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
         ]
     };
 
     function injectProductImages() {
-        Object.keys(sectionImages).forEach(function (sectionId) {
+        Object.keys(productImages).forEach(function (sectionId) {
             var section = document.getElementById(sectionId);
             if (!section) return;
 
             var cards = section.querySelectorAll('.product-card');
-            var images = sectionImages[sectionId];
+            var images = productImages[sectionId];
 
             cards.forEach(function (card, index) {
                 if (index >= images.length) return;
@@ -352,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var title = card.querySelector('h3');
 
                 var img = document.createElement('img');
-                img.src = IMG_BASE + images[index] + IMG_PARAMS;
+                img.src = images[index];
                 img.alt = title ? title.textContent + ' - GIGA Express' : 'Produto GIGA Express';
                 img.loading = 'lazy';
                 img.width = 400;
