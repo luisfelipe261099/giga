@@ -1,9 +1,32 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.gigaexpress.com.br/sitemap.xml
+Disallow: /*.ps1$
+Disallow: /*.log$
 
 User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
 Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Bloqueia bots agressivos de SEO/scraping
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+Sitemap: https://www.gigaexpress.com.br/sitemap.xml
