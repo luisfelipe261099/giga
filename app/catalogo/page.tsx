@@ -4,11 +4,16 @@ import ProductCard from '@/components/ProductCard';
 import { prisma } from '@/lib/prisma';
 
 export default async function CatalogPage() {
-  const categories = await prisma.category.findMany({
-    include: {
-      products: true
-    }
-  });
+  let categories: Awaited<ReturnType<typeof prisma.category.findMany<{ include: { products: true } }>>> = [];
+  try {
+    categories = await prisma.category.findMany({
+      include: {
+        products: true
+      }
+    });
+  } catch {
+    // DB unavailable
+  }
 
   return (
     <main className="catalog-page">

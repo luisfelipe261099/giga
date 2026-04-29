@@ -2,13 +2,18 @@ import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 
 export default async function CategoryNav() {
-  const categories = await prisma.category.findMany({
-    include: {
-      _count: {
-        select: { products: true }
+  let categories: Awaited<ReturnType<typeof prisma.category.findMany<{ include: { _count: { select: { products: true } } } }>>> = [];
+  try {
+    categories = await prisma.category.findMany({
+      include: {
+        _count: {
+          select: { products: true }
+        }
       }
-    }
-  });
+    });
+  } catch {
+    // DB unavailable — render without categories
+  }
 
   return (
     <section className="categories-nav" id="catalogo">
