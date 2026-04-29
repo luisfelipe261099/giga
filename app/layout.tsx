@@ -1,7 +1,7 @@
+import "./global.css";
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
-import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
