@@ -2980,6 +2980,77 @@ h1, h2, h3, h4, h5, h6 {
 .btn-delete:hover { transform: scale(1.2); }
 
 /* ============================================
+   ADMIN - LOGIN SCREEN
+   ============================================ */
+.admin-splash { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--gray-500); font-size: 1.2rem; background: var(--gray-100); }
+.admin-login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); padding: 2rem; }
+.admin-login-card { background: var(--white); border-radius: 1.5rem; padding: 2.5rem 2rem; width: 100%; max-width: 400px; box-shadow: 0 25px 60px rgba(0,0,0,0.3); }
+.admin-login-logo { text-align: center; margin-bottom: 2rem; }
+.login-icon-wrap { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.6rem; color: white; }
+.admin-login-logo h1 { font-size: 1.6rem; color: var(--gray-900); margin: 0 0 0.25rem; }
+.admin-login-logo p { color: var(--gray-500); font-size: 0.9rem; margin: 0; }
+.input-pass-wrap { position: relative; display: flex; }
+.input-pass-wrap input { flex: 1; padding-right: 3rem !important; }
+.btn-toggle-pass { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 1rem; padding: 0; }
+.btn-full { width: 100%; justify-content: center; }
+.login-error { color: #ef4444; font-size: 0.875rem; margin: 0; padding: 0.6rem 0.8rem; background: #fef2f2; border-radius: 0.5rem; border: 1px solid #fecaca; }
+.login-back-link { display: block; text-align: center; margin-top: 1.5rem; color: var(--gray-500); font-size: 0.875rem; text-decoration: none; }
+.login-back-link:hover { color: var(--primary); }
+
+/* ============================================
+   ADMIN - HEADER + TOOLBAR
+   ============================================ */
+.admin-header-inner { display: flex; justify-content: space-between; align-items: center; }
+.admin-header-actions { display: flex; gap: 0.5rem; align-items: center; }
+.btn-logout { background: #ef4444; color: white; border: none; border-radius: var(--radius-sm); padding: 6px 14px; cursor: pointer; font-size: 0.875rem; font-weight: 600; transition: background 0.2s; }
+.btn-logout:hover { background: #dc2626; }
+
+.admin-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; background: var(--white); padding: 1rem 1.25rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.admin-toolbar-title { font-size: 1.1rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 0.5rem; }
+.admin-count { background: var(--primary); color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
+
+.admin-search-wrap { display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; background: var(--gray-100); flex: 1; max-width: 350px; }
+.admin-search-wrap i { color: var(--gray-400); flex-shrink: 0; }
+.admin-search-wrap input { border: none; background: none; outline: none; font-family: inherit; font-size: 0.9rem; width: 100%; }
+.search-clear { background: none; border: none; color: var(--gray-400); cursor: pointer; padding: 0; font-size: 0.9rem; }
+.search-clear:hover { color: var(--gray-700); }
+
+/* ============================================
+   ADMIN - PRODUCT LIST IMPROVEMENTS
+   ============================================ */
+.admin-product-item.editing { border: 2px solid var(--primary); }
+.prod-actions { display: flex; gap: 0.25rem; flex-shrink: 0; }
+.btn-edit { background: none; border: none; color: var(--primary); cursor: pointer; font-size: 1.1rem; padding: 0.5rem; transition: transform 0.2s; }
+.btn-edit:hover { transform: scale(1.2); }
+.admin-loading-inner { text-align: center; padding: 3rem; color: var(--gray-500); font-size: 1rem; }
+.admin-empty { text-align: center; padding: 3rem; color: var(--gray-400); }
+.admin-empty i { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+/* ============================================
+   ADMIN - PAGINATION
+   ============================================ */
+.admin-pagination { display: flex; align-items: center; justify-content: center; gap: 0.35rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.btn-page { background: var(--white); border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 6px 12px; cursor: pointer; font-size: 0.875rem; font-weight: 500; transition: all 0.2s; color: var(--gray-700); }
+.btn-page:hover:not(:disabled) { background: var(--primary); color: white; border-color: var(--primary); }
+.btn-page.active { background: var(--primary); color: white; border-color: var(--primary); }
+.btn-page:disabled { opacity: 0.4; cursor: default; }
+
+/* ============================================
+   ADMIN - IMAGE UPLOAD
+   ============================================ */
+.image-upload-area { border: 2px dashed var(--gray-300); border-radius: var(--radius-md); min-height: 120px; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; transition: border-color 0.2s; background: var(--gray-100); }
+.image-upload-area:hover { border-color: var(--primary); }
+.image-upload-area.compressing { cursor: wait; opacity: 0.7; }
+.image-upload-area img { width: 100%; max-height: 180px; object-fit: contain; display: block; }
+.upload-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--gray-400); padding: 1.5rem; text-align: center; }
+.upload-placeholder i { font-size: 2rem; }
+.upload-placeholder span { font-size: 0.9rem; font-weight: 500; color: var(--gray-600); }
+.upload-placeholder small { font-size: 0.75rem; }
+.btn-remove-img { background: none; border: none; color: #ef4444; font-size: 0.8rem; cursor: pointer; padding: 4px 0; margin-top: 4px; }
+.btn-remove-img:hover { text-decoration: underline; }
+.form-row-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+/* ============================================
    AJUSTES FINAIS ULTRA-MOBILE (96% de acessos)
    ============================================ */
 
@@ -2994,12 +3065,12 @@ h1, h2, h3, h4, h5, h6 {
         right: 0 !important;
     }
 
-    /* Ajuste Header p/ buscas e ações */
+    /* Ajuste Header p/ buscas e aï¿½ï¿½es */
     .navbar {
         padding: 0 4px;
     }
     .search-bar {
-        display: none !important; /* Esconde busca principal no mobile p/ não poluir */
+        display: none !important; /* Esconde busca principal no mobile p/ nï¿½o poluir */
     }
     .nav-actions {
         gap: 8px;
@@ -3014,8 +3085,8 @@ h1, h2, h3, h4, h5, h6 {
         padding: 8px 12px;
         font-size: 0.75rem;
     }
-    .btn-whatsapp span { display: none; } /* Só o ícone e 'Orçar' ou similar? */
-    .btn-whatsapp::after { content: 'Orçar'; }
+    .btn-whatsapp span { display: none; } /* Sï¿½ o ï¿½cone e 'Orï¿½ar' ou similar? */
+    .btn-whatsapp::after { content: 'Orï¿½ar'; }
 
     /* Dollar Card no Paraguai */
     .dollar-card {
@@ -3054,7 +3125,7 @@ h1, h2, h3, h4, h5, h6 {
         overflow: hidden;
     }
     .product-info p {
-        display: none !important; /* Esconde descrições longas no grid mobile */
+        display: none !important; /* Esconde descriï¿½ï¿½es longas no grid mobile */
     }
 }
 
