@@ -57,6 +57,27 @@ export default async function ParaguaiPage() {
             </div>
           </div>
 
+          <div className="paraguai-products">
+            <h2>O que você pode encomendar</h2>
+            <div className="paraguai-products-grid">
+              <div className="paraguai-product-card">
+                <span className="paraguai-product-icon">🌸</span>
+                <h3>Perfumes</h3>
+                <p>Fragrâncias importadas direto do Paraguai com preços especiais.</p>
+              </div>
+              <div className="paraguai-product-card">
+                <span className="paraguai-product-icon">🛏️</span>
+                <h3>Cobertas</h3>
+                <p>Cobertas e mantas de qualidade com ótimo custo-benefício.</p>
+              </div>
+              <div className="paraguai-product-card">
+                <span className="paraguai-product-icon">📱</span>
+                <h3>Smartphones</h3>
+                <p>Celulares e acessórios com preços abaixo do mercado nacional.</p>
+              </div>
+            </div>
+          </div>
+
           <div className="paraguai-cta-box">
             <h2>Como fazer seu pedido?</h2>
             <ol className="steps">
